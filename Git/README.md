@@ -13,11 +13,7 @@ create git bare repo on EC-2
 
 Setup git deploy for AWS ec2 Ubuntu instance
 -------------------------------------------------------------------
-
-The following instructions are for setting up git deployment on an AWS ec2 ubuntu instance (or any ubuntu server for that matter). Also included are instructions for deploying to the remote server and github simultaneously.
-Git deploy setup:
-
-1. copy your public key to your ec2 instance:
+copy your public key to your ec2 instance:
 
      cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/your_pemfile.pem ubuntu@your_ip_addr "cat>> .ssh/authorized_keys"
      cd ~
@@ -27,7 +23,7 @@ Git deploy setup:
 on remote server: create post-receive hook
 --------------------------------------------------------------
 
-$ cat > hooks/post-receive
+      $ cat > hooks/post-receive
 
 #!/bin/sh
 	echo "Stopping service"
