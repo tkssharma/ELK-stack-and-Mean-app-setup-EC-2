@@ -166,9 +166,9 @@ sudo vi /etc/elasticsearch/elasticsearch.yml
 
 cluster.name: Allakarte
 
-cloud.aws.access_key: AKIAIIWR3RQ64DLXOOWA
+cloud.aws.access_key: ********
 
-cloud.aws.secret_key: MgH24cJO7KoJtZzixcGNti8iapt/Y/7CLn6chaeY
+cloud.aws.secret_key: ***************
 
 cloud.aws.region: us-west-2
 
