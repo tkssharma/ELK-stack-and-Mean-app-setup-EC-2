@@ -1,6 +1,5 @@
 ### Creating git bare repo on EC-2 for node deployment ###
 
-For the record, the usual default username in EC2 for these Linux distro:
 ================
 - Amazon Linux: ec2-user
 - Ubuntu: ubuntu
@@ -19,14 +18,11 @@ The following instructions are for setting up git deployment on an AWS ec2 ubunt
 Git deploy setup:
 
 1. copy your public key to your ec2 instance:
-cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/your_pemfile.pem ubuntu@your_ip_addr "cat>> .ssh/authorized_keys"
 
-2. on remote server: create bare git directory
-
-$ cd ~
-$ mkdir ProjectDir.git && cd ProjectDir.git
-
-$ git init --bare
+     cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/your_pemfile.pem ubuntu@your_ip_addr "cat>> .ssh/authorized_keys"
+     cd ~
+     mkdir ProjectDir.git && cd ProjectDir.git
+     git init --bare
 
 on remote server: create post-receive hook
 --------------------------------------------------------------
@@ -34,31 +30,25 @@ on remote server: create post-receive hook
 $ cat > hooks/post-receive
 
 #!/bin/sh
-echo "Stopping service"
-sudo forever stopall
-echo "Deploying to Dev ..."
-_TREE=/home/ec2-user/allakarte
-GIT_WORK_TREE=$_TREE git checkout -f
-cd $_TREE
-pwd
-echo "Installing dependencies"
-sudo npm install
-ls -la $_TREE
-echo "Starting service"
-sudo NODE_ENV=production  forever start app.js
-sudo forever list
-echo "Deployment finished."
-
-
+	echo "Stopping service"
+	sudo forever stopall
+	echo "Deploying to Dev ..."
+	_TREE=/home/ec2-user/allakarte
+	GIT_WORK_TREE=$_TREE git checkout -f
+	cd $_TREE
+	pwd
+	echo "Installing dependencies"
+	sudo npm install
+	ls -la $_TREE
+	echo "Starting service"
+	sudo NODE_ENV=production  forever start app.js
+	sudo forever list
+	echo "Deployment finished."
 
 To push to remote repo in future:
-$ git push ec2 master
-Push to multiple remote repos with one command
-1. add to .git/config in local repo
-[remote "all"]
-        url = https://github.com/YourGitAccount/ProjectDir.git
-        url = ssh://ubuntu@your_ip_addr/home/ubuntu/projects/ProjectDir.git
-2. push to both repos simultaneously
-$ git push all master
+
+	$ git push ec2 master
+
+
  
 

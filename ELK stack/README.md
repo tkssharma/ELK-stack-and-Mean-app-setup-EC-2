@@ -100,16 +100,16 @@ tar zxvf logstash-1.4.2.tar.gz
 
 cd logstash-1.4.2
 
-# bin/logstash -e 'input { stdin { } } output { stdout {} }' 
+bin/logstash -e 'input { stdin { } } output { stdout {} }' 
 hello world 
 
-# bin/logstash -e 'input { stdin { } } output { elasticsearch { host => localhost } }' 
+bin/logstash -e 'input { stdin { } } output { elasticsearch { host => localhost } }' 
 
-# bin/logstash -e 'input { file { path => "/home/ec2-user/allakarte/logfile.txt" } } output { elasticsearch { host => "52.35.154.103" protocol => "http" } }'
+bin/logstash -e 'input { file { path => "/home/ec2-user/allakarte/logfile.txt" } } output { elasticsearch { host => "52.35.154.103" protocol => "http" } }'
 
-#bin/logstash -e 'input { file { path => "/tmp/logfile.txt" start_position => beginning  } } output { elasticsearch { host => "52.35.154.103:9200" protocol => "http" } }'
+bin/logstash -e 'input { file { path => "/tmp/logfile.txt" start_position => beginning  } } output { elasticsearch { host => "52.35.154.103:9200" protocol => "http" } }'
 
-#bin/logstash -e 'input { stdin {} }   output { elasticsearch { host => "52.35.154.103:9200" protocol => "http" } }'
+bin/logstash -e 'input { stdin {} }   output { elasticsearch { host => "52.35.154.103:9200" protocol => "http" } }'
 
 
 

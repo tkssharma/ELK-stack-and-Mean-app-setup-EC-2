@@ -46,33 +46,36 @@ When starting for the first time, it will take a couple of minutes for MongoDB t
 
 ###Setup database on MongoDB  EC-2 for Mean app###
 
-use admin
-db.createUser(
-  {
-    user: "admin",
-    pwd: "password",
-    roles: [ { role: "root", db: "admin" } ]
-  }
-);
-exit;
+    use admin
+    db.createUser(
+      {
+        user: "admin",
+        pwd: "password",
+        roles: [ { role: "root", db: "admin" } ]
+      }
+    );
+    exit;
+
 Shell back into mongodb with the above admin user
-mongo --port 27017 -u admin -p password --authenticationDatabase admin
+
+     mongo --port 27017 -u admin -p password --authenticationDatabase admin
+
 Create user for a database called test and provide R/W access
 
-use test
-db.createUser(
-    {
-      user: "tester",
-      pwd: "password",
-      roles: [
-         { role: "read", db: "test1" },
-         { role: "read", db: "test2" },
-         { role: "read", db: "test3" },
-         { role: "readWrite", db: "test" }
-      ]
-    }
-);
+        use test
+        db.createUser(
+            {
+              user: "tester",
+              pwd: "password",
+              roles: [
+                 { role: "read", db: "test1" },
+                 { role: "read", db: "test2" },
+                 { role: "read", db: "test3" },
+                 { role: "readWrite", db: "test" }
+              ]
+            }
+        );
 Shell into mongodb with the test user
 
-mongo -u tester -p --authenticationDatabase test
+    mongo -u tester -p --authenticationDatabase test
 
